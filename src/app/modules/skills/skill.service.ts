@@ -76,9 +76,18 @@ const updateSkill = async (id: string, payload: ISkill, file: Express.Multer.Fil
     return result
 }
 
+const deleteSkill = async (id: string) => {
+    const result = await prisma.skill.delete({
+        where: { id }
+    })
+    return result
+}
+
+
 export const SkillService = {
     createSkill,
     getAllSkills,
     getSkillById,
-    updateSkill
+    updateSkill,
+    deleteSkill
 }

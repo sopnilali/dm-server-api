@@ -28,16 +28,6 @@ const createBlog = (req) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getAllBlog = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.default.blog.findMany({
-        include: {
-            user: {
-                select: {
-                    name: true,
-                    email: true,
-                    avaterUrl: true,
-                    role: true
-                }
-            }
-        },
         orderBy: {
             createdAt: 'desc'
         }
@@ -48,7 +38,14 @@ const getSingleBlog = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.default.blog.findUnique({
         where: { id },
         include: {
-            user: true
+            user: {
+                select: {
+                    name: true,
+                    email: true,
+                    avaterUrl: true,
+                    role: true
+                }
+            }
         }
     });
     return result;

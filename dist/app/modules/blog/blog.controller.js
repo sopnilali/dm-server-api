@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlogController = void 0;
+const catchAsync_1 = require("../../helper/catchAsync");
 const sendResponse_1 = __importDefault(require("../../helper/sendResponse"));
 const blog_service_1 = require("./blog.service");
 const http_status_1 = __importDefault(require("http-status"));
@@ -25,7 +26,7 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         data: result
     });
 });
-const getAllBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield blog_service_1.BlogService.getAllBlog();
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -33,7 +34,7 @@ const getAllBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         message: "Blog fetched successfully",
         data: result
     });
-});
+}));
 const getSingleBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield blog_service_1.BlogService.getSingleBlog(req.params.id);
     (0, sendResponse_1.default)(res, {

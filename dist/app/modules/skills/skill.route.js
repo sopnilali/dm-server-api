@@ -24,4 +24,7 @@ router.patch('/:id', (0, auth_1.default)(client_1.UserRole.ADMIN), fileUploader_
     req.body = JSON.parse(req.body.data);
     return skill_controller_1.SkillController.updateSkill(req, res, next);
 });
+router.delete('/:id', (0, auth_1.default)(client_1.UserRole.ADMIN), (req, res, next) => {
+    return skill_controller_1.SkillController.deleteSkill(req, res, next);
+});
 exports.SkillRoutes = router;

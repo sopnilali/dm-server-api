@@ -77,9 +77,16 @@ const updateSkill = (id, payload, file) => __awaiter(void 0, void 0, void 0, fun
     });
     return result;
 });
+const deleteSkill = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.default.skill.delete({
+        where: { id }
+    });
+    return result;
+});
 exports.SkillService = {
     createSkill,
     getAllSkills,
     getSkillById,
-    updateSkill
+    updateSkill,
+    deleteSkill
 };

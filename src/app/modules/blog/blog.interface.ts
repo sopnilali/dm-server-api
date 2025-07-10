@@ -2,7 +2,7 @@ interface IBlog {
     title: string;
     content: string;
     thumbnail?: string;
-    category?: string;
+    category: string[];
     userId: string;
 }
 

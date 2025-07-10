@@ -2,6 +2,8 @@ import { FileUploader } from "../../helper/fileUploader"
 import prisma from "../../utils/prisma"
 import { IBlog } from "./blog.interface"
 
+
+
 const createBlog = async (req: any) => {
     const file = req.file
     if (file) {
@@ -20,6 +22,19 @@ const createBlog = async (req: any) => {
 
 const getAllBlog = async () => {
     const result = await prisma.blog.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+    return result
+}
+
+
+
+
+const getSingleBlog = async (id: string) => {
+    const result = await prisma.blog.findUnique({
+        where: { id },
         include: {
             user: {
                 select: {
@@ -29,19 +44,6 @@ const getAllBlog = async () => {
                     role: true
                 }
             }
-        },
-        orderBy: {
-            createdAt: 'desc'
-        }
-    })
-    return result
-}
-
-const getSingleBlog = async (id: string) => {
-    const result = await prisma.blog.findUnique({
-        where: { id },
-        include: {
-            user: true
         }
     })
     return result

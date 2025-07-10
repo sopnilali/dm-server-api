@@ -55,9 +55,20 @@ const updateSkill = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0,
         data: result
     });
 }));
+const deleteSkill = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield skill_service_1.SkillService.deleteSkill(id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Skill deleted successfully",
+        data: result
+    });
+}));
 exports.SkillController = {
     createSkill,
     getAllSkills,
     getSkillById,
-    updateSkill
+    updateSkill,
+    deleteSkill
 };

@@ -1,3 +1,4 @@
+import { catchAsync } from "../../helper/catchAsync"
 import sendResponse from "../../helper/sendResponse"
 import { BlogService } from "./blog.service"
 import status from "http-status"
@@ -12,7 +13,7 @@ const createBlog = async (req: any, res: any) => {
     })
 }
 
-const getAllBlog = async (req: any, res: any) => {
+const getAllBlog = catchAsync (async (req: any, res: any) => {
     const result = await BlogService.getAllBlog()
     sendResponse(res, {
         statusCode: status.OK,
@@ -20,7 +21,7 @@ const getAllBlog = async (req: any, res: any) => {
         message: "Blog fetched successfully",
         data: result
     })
-}
+})
 
 const getSingleBlog = async (req: any, res: any) => {
     const result = await BlogService.getSingleBlog(req.params.id)

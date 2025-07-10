@@ -23,4 +23,10 @@ router.patch('/:id', auth(UserRole.ADMIN), FileUploader.upload.single('file'), (
     return SkillController.updateSkill(req, res, next)
 })
 
+router.delete('/:id', auth(UserRole.ADMIN), (req: Request, res: Response, next: NextFunction) => {
+    return SkillController.deleteSkill(req, res, next)
+})
+
+
+
 export const SkillRoutes = router;

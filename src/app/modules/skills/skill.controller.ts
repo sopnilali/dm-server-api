@@ -46,9 +46,21 @@ const updateSkill = catchAsync(async (req, res) => {
     })
 })
 
+const deleteSkill = catchAsync(async (req, res, next) => {
+    const { id } = req.params
+    const result = await SkillService.deleteSkill(id)
+    sendResponse(res, {
+        statusCode: status.OK,
+        success: true,
+        message: "Skill deleted successfully",
+        data: result
+    })
+})
+
 export const SkillController = {
     createSkill,
     getAllSkills,
     getSkillById,
-    updateSkill
+    updateSkill,
+    deleteSkill
 }
