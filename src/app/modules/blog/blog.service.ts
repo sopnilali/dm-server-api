@@ -22,9 +22,19 @@ const createBlog = async (req: any) => {
 
 const getAllBlog = async () => {
     const result = await prisma.blog.findMany({
+        include: {
+            user: {
+                select: {
+                    name: true,
+                    email: true,
+                    avaterUrl: true,
+                }
+            }
+        },
         orderBy: {
             createdAt: 'desc'
         }
+
     })
     return result
 }
@@ -41,7 +51,6 @@ const getSingleBlog = async (id: string) => {
                     name: true,
                     email: true,
                     avaterUrl: true,
-                    role: true
                 }
             }
         }
